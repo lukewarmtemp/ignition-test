@@ -1,0 +1,49 @@
+{
+  "ignition": {
+    "version": "3.3.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "passwordHash": "test",
+        "sshAuthorizedKeys": [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZHnKzuQjyt6elFsm2XHEHxrGOK7Es9HlJp70hN3JLViwGgFCPv5TQBItZD58xsdmk9QfcwnS0ojaIZdERZeMX7j/uxnVy3j/yjrcdQs2o/CB7IJRiRUTH7nmDa1MlXEFOTIcW160+FHfvywx91kNoVxx8Kq/b1l/KS3ZCiTF77T0KzD9LH9FlaoLOX6WWyZvNdNwwrykbVudJ/18Khj/yM56l1xG70f+A/l94mkS1w+NrtHu8TJtochh46SQaMPTXv8saCFXLNY7Kvvf0+sj5JMbyrnoBzYSzStz++Tu47s4I/7GBpvqprf13qjZb9BZuGdefCnIxW2svwkZxwxdUlshQajBI+1CMbCsLSzZtHWHM0HhczD8gul0/078SZpMGH+wK7L7Z9okDFYk6aq6A5x3FjQrSSAvGUldJTxkX1kwGt63iKJeO4jfsg/zFBUcsoZ1bQppA1rStM+R5nfAh4Mr5n6CwjL0qoCnYjG3VHPMYfV6SwzMu75qEoGiNcKE= luyang@unused-10-15-17-22.yyz.redhat.com"
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/hostname",
+        "contents": {
+          "compression": "",
+          "source": "data:,tutorial%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/cachefilesd.conf",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/yzMQQoCMQyF4X1OkU3WI6KivUxpa6KDnVGSVJzbC9HV++GDd50Vp3fRqZV250ksFrzccNl+XXWsiGeC2kbveCKo5s8X7gkk6EIgQUcCCToQGLfmH7TNnJc80j80xanMnS0/WFfu2ZPt4BsAAP//umwbIokAAAA="
+        },
+        "mode": 420
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "dropins": [
+          {
+            "contents": "[Service]\n# Override ExecStart in main unit\nExecStart=\n# Add new Execstart with `-` prefix to ignore failure`\nExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM\n",
+            "name": "autologin-core.conf"
+          }
+        ],
+        "name": "serial-getty@ttyS0.service"
+      }
+    ]
+  }
+}
